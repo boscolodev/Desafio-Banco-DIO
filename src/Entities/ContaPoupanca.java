@@ -31,5 +31,24 @@ public class ContaPoupanca extends Conta {
 		}
 	}
 
+	@Override
+	public void transferir(Cliente clienteOrigem, Banco bancoDestino, Agencia agenciaDestino, Conta contaDestino,
+			Double valor) {
 
+		if (!clienteOrigem.getBanco().stream().anyMatch(b -> b.getNumero().equals(bancoDestino.getNumero()))) {
+			System.out.println("Banco inválido !");
+		} else if (!(agenciaDestino.getNumero() != null)) {
+			System.out.println("Agência inválida !");
+		} else if (!((contaDestino.getNumero()) != null)) {
+			System.out.println("Conta inválida");
+		} else if (!(valor >= 0)) {
+			System.out.println("Valor inválido !");
+		} else if (!(this.saldo >= valor)) {
+			System.out.println("Saldo insuficiente !");
+		} else {
+			this.saldo -= valor;
+			contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+			System.out.println("Transferencia realizada com sucesso !");
+		}
+	}
 }

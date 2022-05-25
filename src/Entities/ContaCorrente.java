@@ -1,8 +1,5 @@
 package Entities;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +31,7 @@ public class ContaCorrente extends Conta {
 	public void sacar(Double valor) {
 		if (!(valor > 0)) {
 			System.out.println("Valor inválio para depósito");
-		}
-		if ((super.getSaldo() - valor) <= 0) {
+		} else if ((super.getSaldo() - valor) <= 0) {
 			System.out.println("Saldo insuficiente para saque !");
 		} else {
 			super.setSaldo(super.getSaldo() - valor);
@@ -43,27 +39,27 @@ public class ContaCorrente extends Conta {
 		}
 	}
 
-	
-	public void transferir(Banco bancoOrigem, Banco bancoDestino, Agencia agenciaOrigem, Agencia agenciaDestino,
-			Conta contaDestino, Double Valor) {
-		
-		/*
-		 * if (!(agencia != null)) { System.out.println("Agencia inválida !"); } else if
-		 * (!(conta != null)) { System.out.println("Conta inválida"); } else if (!(valor
-		 * >= 0)) { System.out.println("Valor inválido."); } else if( ) {
-		 * 
-		 * } else {
-		 * 
-		 * System.out.println("Origem Conta: " + this.getNumero() + " Saldo: " +
-		 * this.getSaldo()); System.out.println("Destino Conta: " + conta.getNumero() +
-		 * " Saldo: " + conta.getSaldo()); this.setSaldo(getSaldo() - valor);
-		 * conta.setSaldo(conta.getSaldo() + valor);
-		 * System.out.println("Transação Efetuada com sucesso !");
-		 * System.out.println("Origem Conta: " + this.getNumero() + " Saldo: " +
-		 * this.getSaldo()); System.out.println("Destino Conta: " + conta.getNumero() +
-		 * " Saldo: " + conta.getSaldo());
-		 * 
-		 * this.setSaldo(getSaldo() - valor); conta.setSaldo(conta.getSaldo() + valor);
-		 */
+	@Override
+	public void transferir(Cliente clienteOrigem, Banco bancoDestino, Agencia agenciaDestino, Conta contaDestino,
+			Double valor) {
+
+		if (!clienteOrigem.getBanco().stream().anyMatch(b -> b.getNumero().equals(bancoDestino.getNumero()))) {
+			System.out.println("Banco inválido !");
+		} else if (!(agenciaDestino.getNumero() != null)) {
+			System.out.println("Agência inválida !");
+		} else if (!((contaDestino.getNumero()) != null)) {
+			System.out.println("Conta inválida");
+		} else if (!(valor >= 0)) {
+			System.out.println("Valor inválido !");
+		} else if (!(this.saldo >= valor)) {
+			System.out.println("Saldo insuficiente !");
+		} else {
+			this.saldo -= valor;
+			contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+			
+			System.out.println("Transferencia realizada com sucesso !");
+		}
+
 	}
+
 }
