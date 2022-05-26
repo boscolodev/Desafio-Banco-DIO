@@ -2,7 +2,7 @@
 
 Linguagem Utilizada: Java 8
 
-Sistema de operaçoes bancária simples com as funcionalidades: 
+Sistema de operações bancária simples com as funcionalidades: 
 
   * Depósito
   * Saque
