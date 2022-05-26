@@ -6,21 +6,21 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FinanciamentoCDC extends Financiamento {
+public class FinanciamentoLeasing extends Financiamento {
 
-	private static Double txFinanciamento = 1.12;
+	private static Double txFinanciamento = 1.08;
 
 	private Double valor;
 	private Integer prazoContratado;
-	
+
 	Double valorJuros = 0d;
 	Double taxaJuros = 0d;
 	Double totalFinanciado = 0d;
 	Double valorParcela = 0d;
 	Integer parcelasPagas = 0;
-	
+
 	@Builder
-	public FinanciamentoCDC(Banco banco, Agencia agencia, Conta conta, Cliente cliente) {
+	public FinanciamentoLeasing(Banco banco, Agencia agencia, Conta conta, Cliente cliente) {
 		super.banco = banco;
 		super.agencia = agencia;
 		super.cliente = cliente;

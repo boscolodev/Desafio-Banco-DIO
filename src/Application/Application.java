@@ -10,6 +10,7 @@ import Entities.Conta;
 import Entities.ContaCorrente;
 import Entities.Financiamento;
 import Entities.FinanciamentoCDC;
+import Entities.FinanciamentoLeasing;
 
 public class Application {
 
@@ -155,14 +156,34 @@ public class Application {
 		contaCorrente1.transferir(cliente, banco2, agencia1, contaCorrente1, 86.92);
 		
 		//Realizando um extrato de cliente
-		System.out.println("Método imprimeExtrato()");
+		System.out.println("===== Método imprimeExtrato() ======");
 		cliente.imprimeExtrato(agencia1, contaCorrente1);
 
 		//Realizando um financiado
-		Financiamento cdc = new FinanciamentoCDC(banco, agencia1, contaCorrente1, cliente);
+		Financiamento leasing = new FinanciamentoLeasing(banco, agencia1, contaCorrente1, cliente);
+		Financiamento cdc = new FinanciamentoCDC(banco2, agencia2, contaCorrente2, cliente2);	
+		
+		System.out.println("==================== Leasing ====================");
+		System.out.println("Financiando R$1000.00");
+		leasing.financiar(10000d, 24);
+		System.out.println("===== Imprimir o Financiament0 =====");
+		leasing.imprimeFinanciamento();
+		System.out.println("===== Pagar 10 parcelas =====");
+		leasing.pagarParcela(10);
+		System.out.println("===== Imprimir o Financiament0 =====");
+		leasing.imprimeFinanciamento();
 
+		
+		System.out.println("==================== CDC ====================");
+		System.out.println("Financiando R$1000.00");
 		cdc.financiar(10000d, 24);
-		cdc.pagarParcela(3);
+		System.out.println("===== Imprimir o Financiament0 =====");
+		cdc.imprimeFinanciamento();
+		System.out.println("===== Pagar 10 parcelas =====");
+		cdc.pagarParcela(24);
+		System.out.println("===== Imprimir o Financiament0 =====");
+		cdc.imprimeFinanciamento();
+		
 	}
 
 }
